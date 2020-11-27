@@ -47,6 +47,8 @@ namespace Scout
             {
                 if (drive.IsReady)
                 {
+                    
+
                     if (drive.VolumeLabel.ToLower() == nameMyDriver.ToLower())
                     {
                         pathMyDriver = drive.Name;
@@ -85,7 +87,7 @@ namespace Scout
             Console.WriteLine("Сканирование дисков в системе пользователя : ...");
             Console.WriteLine();
 
-            // Запись общее место / оставшееся места
+            // Запись общее место / оставшевося места
             DriveInfo[] info = DriveInfo.GetDrives();
             foreach (DriveInfo d in info)
             {
