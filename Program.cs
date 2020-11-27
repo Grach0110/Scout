@@ -26,6 +26,9 @@ namespace Scout
 
             Console.WriteLine("'Разведчик' закончил работу || The 'Scout' finished his work: ...");
             //Console.ReadLine();
+
+
+            //Тест
         }
     }
 }
