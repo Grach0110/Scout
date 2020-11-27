@@ -47,8 +47,6 @@ namespace Scout
             {
                 if (drive.IsReady)
                 {
-                    
-
                     if (drive.VolumeLabel.ToLower() == nameMyDriver.ToLower())
                     {
                         pathMyDriver = drive.Name;

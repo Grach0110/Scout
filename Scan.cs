@@ -53,7 +53,6 @@ namespace Scout
                         break;
                     }
                 }
-                break;
             }
         }
     }

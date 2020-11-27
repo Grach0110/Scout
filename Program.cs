@@ -5,6 +5,7 @@ namespace Scout
     public class Program
     {
         // Название USB должно быть TriTon
+
         /// <summary>
         /// Название USB
         /// </summary>
@@ -21,14 +22,11 @@ namespace Scout
             
             Scan.The_definition_of_OS();
 
-            AddApp.CopyApp();
+            //AddApp.CopyApp();
 
             Console.WriteLine("'Разведчик' закончил работу || The 'Scout' finished his work: ...");
             //Console.ReadLine();
-
-
-            //Тест
         }
     }
 }
-//  Добавить просмотр всех папок и подпапок в них + файлы
+// Добавить запись всех папок и подпапок + файлы в них
