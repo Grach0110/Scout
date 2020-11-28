@@ -85,7 +85,7 @@ namespace Scout
             Console.WriteLine("Сканирование дисков в системе пользователя : ...");
             Console.WriteLine();
 
-            // Запись общее место / оставшевося места
+            // Информация о дисках
             DriveInfo[] info = DriveInfo.GetDrives();
             foreach (DriveInfo d in info)
             {
@@ -109,6 +109,8 @@ namespace Scout
                             streamWriter.Close();
                         }
                     }
+
+
                 }
             }
 
@@ -122,29 +124,7 @@ namespace Scout
                     {
                         if (Directory.Exists(drive.Name))
                         {
-                            string[] dirs = Directory.GetDirectories(drive.Name);
-                            foreach (string d in dirs)
-                            {
-                                StreamWriter streamWriter = new StreamWriter(pathMyDriver + nameFileForWin, true);
-                                streamWriter.WriteLineAsync("Папка : __________");
-                                streamWriter.WriteLineAsync("");
-                                streamWriter.WriteLineAsync(d);
-                                streamWriter.WriteLineAsync("");
-                                streamWriter.Close();
-                                countFolders++;
-                            }
-
-                            string[] fils = Directory.GetFiles(drive.Name);
-                            foreach (string f in fils)
-                            {
-                                StreamWriter streamWriter = new StreamWriter(pathMyDriver + nameFileForWin, true);
-                                streamWriter.WriteLineAsync("Файл : __________");
-                                streamWriter.WriteLineAsync("");
-                                streamWriter.WriteLineAsync(f);
-                                streamWriter.WriteLineAsync("");
-                                streamWriter.Close();
-                                countFiles++;
-                            }
+                            WriteSubPath(drive.Name);
                         }
                     }
                 }
@@ -158,6 +138,61 @@ namespace Scout
 
             Console.WriteLine("Сканирование дисков закончено : ...");
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Запись папок
+        /// </summary>
+        public static void WriteSubPath(string str)
+        {
+            try
+            {
+                string[] dirs = Directory.GetDirectories(str);
+                foreach (string d in dirs)
+                {
+                    StreamWriter streamWriter = new StreamWriter(pathMyDriver + nameFileForWin, true);
+                    streamWriter.WriteLineAsync("Папка : __________");
+                    streamWriter.WriteLineAsync("");
+                    streamWriter.WriteLineAsync(d);
+                    streamWriter.WriteLineAsync("");
+                    streamWriter.Close();
+                    countFolders++;
+
+                    string[] subDirs = Directory.GetDirectories(d);
+                    foreach (string subDir in subDirs)
+                    {
+                        if (Directory.Exists(subDir))
+                        {
+                            WriteSubPath(subDir);
+                        }
+                    }
+
+                    WriteFiles(d);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
+
+        /// <summary>
+        /// Запись файлов
+        /// </summary>
+        public static void WriteFiles(string file)
+        {
+            string[] fils = Directory.GetFiles(file);
+            foreach (string f in fils)
+            {
+                StreamWriter streamWriter = new StreamWriter(pathMyDriver + nameFileForWin, true);
+                streamWriter.WriteLineAsync("Файл : __________");
+                streamWriter.WriteLineAsync("");
+                streamWriter.WriteLineAsync(f);
+                streamWriter.WriteLineAsync("");
+                streamWriter.Close();
+                countFiles++;
+            }
         }
     }
 }
